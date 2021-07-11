@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="false"
+    android:layout_marginBottom="5dp"
+    app:cardElevation="10dp"
+    app:cardCornerRadius="15dp"
+    android:layout_margin="10dp"
+    app:cardBackgroundColor="@color/d6bbe4"
+    app:cardMaxElevation="10dp"
+    app:cardPreventCornerOverlap="true"
+    app:cardUseCompatPadding="true"
+    android:background="@drawable/item_background"
+    android:divider="@drawable/border"
+    android:orientation="vertical"
+    android:showDividers="middle">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="0.5">
+
+            <TextView
+                android:id="@+id/type"
+                style="@style/word_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
+                android:textColor="#584718"
+                android:textSize="16sp" />
+            <TextView
+                android:id="@+id/cid"
+                style="@style/word_title"
+                android:layout_width="match_parent"
+                android:textColor="#584718"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/plmn"
+                style="@style/word_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
+                android:textColor="#584718"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/lac"
+                style="@style/word_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
+                android:textColor="#584718"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/tac"
+                style="@style/word_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
+                android:textColor="#584718"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/arfcn"
+                style="@style/word_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
+                android:textColor="#584718"
+                android:textSize="16sp" />
+            <TextView
+                android:id="@+id/mnc"
+                style="@style/word_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
+                android:textColor="#584718"
+                android:textSize="16sp" />
+            <TextView
+                android:id="@+id/mcc"
+                style="@style/word_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
+                android:textColor="#584718"
+                android:textSize="16sp" />
+        </LinearLayout>
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@android:color/black"
+            android:layout_margin="1dp"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="0.40">
+
+            <TextView
+                android:id="@+id/strength"
+                style="@style/word_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
+                android:textColor="#584718"
+                android:textSize="16sp" />
+
+
+            <TextView
+                android:id="@+id/time"
+                style="@style/word_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#584718"
+                android:fontFamily="sans-serif-medium"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/altitude"
+                style="@style/word_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
+                android:textColor="#584718"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/longitude"
+                style="@style/word_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
+                android:textColor="#584718"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/gsm_rssi"
+                style="@style/word_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
+                android:textColor="#584718"
+                android:textSize="16sp" />
+            <TextView
+                android:id="@+id/latency"
+                style="@style/word_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#584718"
+                android:fontFamily="sans-serif-medium"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/content_latency"
+                style="@style/word_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
+                android:textColor="#584718"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
