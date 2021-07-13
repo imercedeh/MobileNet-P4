@@ -35,67 +35,90 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-medium"
-                android:textColor="#584718"
+                android:text="@string/type"
                 android:textSize="16sp" />
             <TextView
-                android:id="@+id/cid"
+                android:id="@+id/lte_rxlev"
                 style="@style/word_title"
                 android:layout_width="match_parent"
-                android:textColor="#584718"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-medium"
+                android:text="@string/lte_rxlev"
+                android:textSize="16sp" />
+            <TextView
+                android:id="@+id/gsm_rssi"
+                style="@style/word_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
+                android:text="@string/gsm_rssi"
+                android:textSize="16sp" />
+            <TextView
+                android:id="@+id/umts_rscp"
+                style="@style/word_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
+                android:text="@string/umts_rscp"
+                android:textSize="16sp" />
+            <TextView
+                android:id="@+id/lte_rsrp"
+                style="@style/word_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
+                android:text="@string/lte_rsrp"
+                android:textSize="16sp" />
+            <TextView
+                android:id="@+id/lte_rsrq"
+                style="@style/word_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
+                android:text="@string/lte_rsrq"
+                android:textSize="16sp" />
+            <TextView
+                android:id="@+id/lte_cqi"
+                style="@style/word_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
+                android:text="@string/lte_cqi"
+                android:textSize="16sp" />
+            <TextView
+                android:id="@+id/strength"
+                style="@style/word_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
+                android:text="@string/strength"
                 android:textSize="16sp" />
 
             <TextView
-                android:id="@+id/plmn"
+                android:id="@+id/time"
                 style="@style/word_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-medium"
-                android:textColor="#584718"
+                android:text="@string/time"
                 android:textSize="16sp" />
 
             <TextView
-                android:id="@+id/lac"
+                android:id="@+id/altitude"
                 style="@style/word_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-medium"
-                android:textColor="#584718"
+                android:text="@string/altitude"
                 android:textSize="16sp" />
 
             <TextView
-                android:id="@+id/tac"
+                android:id="@+id/longitude"
                 style="@style/word_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-medium"
-                android:textColor="#584718"
-                android:textSize="16sp" />
-
-            <TextView
-                android:id="@+id/arfcn"
-                style="@style/word_title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-medium"
-                android:textColor="#584718"
-                android:textSize="16sp" />
-            <TextView
-                android:id="@+id/mnc"
-                style="@style/word_title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-medium"
-                android:textColor="#584718"
-                android:textSize="16sp" />
-            <TextView
-                android:id="@+id/mcc"
-                style="@style/word_title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-medium"
-                android:textColor="#584718"
+                android:text="@string/longitude"
                 android:textSize="16sp" />
         </LinearLayout>
         <View
@@ -111,57 +134,70 @@
             android:layout_weight="0.40">
 
             <TextView
-                android:id="@+id/strength"
+                android:id="@+id/arfcn"
                 style="@style/word_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-medium"
-                android:textColor="#584718"
-                android:textSize="16sp" />
-
-
-            <TextView
-                android:id="@+id/time"
-                style="@style/word_title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="#584718"
-                android:fontFamily="sans-serif-medium"
+                android:text="@string/arfcn"
                 android:textSize="16sp" />
 
             <TextView
-                android:id="@+id/altitude"
+                android:id="@+id/lac"
                 style="@style/word_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-medium"
-                android:textColor="#584718"
+                android:text="@string/lac"
                 android:textSize="16sp" />
 
             <TextView
-                android:id="@+id/longitude"
+                android:id="@+id/tac"
                 style="@style/word_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-medium"
-                android:textColor="#584718"
+                android:text="@string/tac"
                 android:textSize="16sp" />
-
             <TextView
-                android:id="@+id/gsm_rssi"
+                android:id="@+id/cid"
                 style="@style/word_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-medium"
-                android:textColor="#584718"
+                android:text="@string/cell_identity"
+                android:textSize="16sp" />
+            <TextView
+                android:id="@+id/plmn"
+                style="@style/word_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
+                android:text="@string/plmn"
+                android:textSize="16sp" />
+            <TextView
+                android:id="@+id/mnc"
+                style="@style/word_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
+                android:text="@string/mnc"
+                android:textSize="16sp" />
+            <TextView
+                android:id="@+id/mcc"
+                style="@style/word_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
+                android:text="@string/mcc"
                 android:textSize="16sp" />
             <TextView
                 android:id="@+id/latency"
                 style="@style/word_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="#584718"
                 android:fontFamily="sans-serif-medium"
+                android:text="Latency: "
                 android:textSize="16sp" />
 
             <TextView
@@ -170,7 +206,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-medium"
-                android:textColor="#584718"
+                android:text="Content Latency: "
+                android:textSize="16sp" />
+            <TextView
+                android:id="@+id/jitter"
+                style="@style/word_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
+                android:text="@string/jitter"
                 android:textSize="16sp" />
         </LinearLayout>
 

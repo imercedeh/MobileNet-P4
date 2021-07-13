@@ -37,9 +37,17 @@ import java.util.concurrent.TimeUnit
 
 
 class MainActivity : AppCompatActivity() {
+
     private lateinit var infoViewModel: InfoViewModel
     private var current_location: Location? = null
     lateinit var mFusedLocationClient: FusedLocationProviderClient
+
+    //For Project 4
+    var jitter = 0
+    var jitter_counter = 0
+    var latency : Long = 0
+    var content_latency :Long = 0
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

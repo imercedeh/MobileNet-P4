@@ -20,7 +20,17 @@ class CellInfo(
     val longitude: Double,
     val altitude: Double,
     val time: Long,
-    //These are for project 4
+
+    val jitter: Int,
+    val upSpeed: Int,
+    val downSpeed: Int,
+
+    val lte_rxlev: String,
+    val umts_rscp: String,
+    val lte_rsrp: String,
+    val lte_rsrq: String,
+    val lte_cqi: String,
+
     val latency: Long,
     val content_latency: Long
 

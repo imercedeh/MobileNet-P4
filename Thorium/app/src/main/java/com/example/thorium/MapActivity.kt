@@ -35,14 +35,12 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
 
-
         infoViewModel = ViewModelProvider(this).get(InfoViewModel::class.java)
         infoViewModel.info.observe(this, Observer { words ->
             words?.let { updateMarkers(it) }
         })
-
-
     }
+
     private fun getColor(cellInfo: CellInfo) : Float {
         var color: Float
         val type = cellInfo.type
@@ -84,7 +82,12 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
             val snip = "Strength: " + cellInfo.strength + "\n" +
                     "PLMN: " + cellInfo.mcc + cellInfo.mnc + "\n" +
                     "Longitude: " + cellInfo.longitude + " ms\n" +
-                  "Altitude: " + cellInfo.altitude + " ms\n"
+                    "Altitude: " + cellInfo.altitude + " ms\n"
+                    "Up: " + cellInfo.upSpeed + " kb/sec\n" +
+                    "Down: " + cellInfo.downSpeed + " kb/sec\n" +
+                    "Latency: " + cellInfo.latency + " ms\n" +
+                    "Content latency: " + cellInfo.content_latency + " ms\n" +
+                    "Jitter: " + cellInfo.jitter + " ms"
             val marker = mMap.addMarker(MarkerOptions().icon(
                 BitmapDescriptorFactory.defaultMarker(color)).position(
                 pos).title(cellInfo.type).snippet(snip))
