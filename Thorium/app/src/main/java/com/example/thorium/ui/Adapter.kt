@@ -104,7 +104,7 @@ class Adapter internal constructor(
             {
                 parent.removeView(holder.lac_ItemView)
             }
-            if (current.type == "LTE")
+            if (current.type != "LTE")
             {
                 parent.removeView(holder.tac_ItemView)
                 parent.removeView(holder.lte_rsrq_ItemView)

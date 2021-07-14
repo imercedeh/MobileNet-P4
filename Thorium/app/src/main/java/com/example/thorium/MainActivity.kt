@@ -14,6 +14,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.telephony.*
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.Toast
@@ -108,13 +109,19 @@ class MainActivity : AppCompatActivity() {
         var gsm_rssi: String = ""
         var lac: String = ""
         var tac: String = ""
-        //var rac: String = ""
         var plmn: String = ""
         var mcc: String = ""
         var cid : String = ""
         var mnc: String = ""
         var arfcn : String = ""
         var techno: String = ""
+        var lte_rxlev: String = ""
+        var umts_rscp: String = ""
+        var lte_rsrp: String = ""
+        var lte_rsrq: String = ""
+        var lte_cqi: String = ""
+        var upSpeed: Int = 0
+        var downSpeed: Int = 0
         val infos = tm.allCellInfo
         if (infos.size == 0){
             Toast.makeText(this@MainActivity, "No Signal", Toast.LENGTH_SHORT).show()
@@ -122,6 +129,24 @@ class MainActivity : AppCompatActivity() {
 
         try {
             val cellInfo = tm.allCellInfo[0]
+
+            if (cellInfo is CellInfoWcdma) {
+                val cellSignalStrengthWcdma: CellSignalStrengthWcdma = cellInfo.cellSignalStrength
+                val cellIdentityWcdma: CellIdentityWcdma = cellInfo.cellIdentity
+                strength = cellSignalStrengthWcdma.dbm.toString()
+                lac = cellIdentityWcdma.lac.toString()
+                umts_rscp = cellSignalStrengthWcdma.asuLevel.toString()
+                cid = cellIdentityWcdma.cid.toString()
+                mcc = cellIdentityWcdma.mccString.toString()
+                mnc = cellIdentityWcdma.mncString.toString()
+                plmn = mcc + mnc
+                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+                    arfcn = cellIdentityWcdma.uarfcn.toString()
+                }
+                //rac
+                techno = "UMTS"
+            }
+
             if (cellInfo is CellInfoGsm) {
                 val cellSignalStrengthGsm: CellSignalStrengthGsm = cellInfo.cellSignalStrength
                 val cellIdentityGsm: CellIdentityGsm = cellInfo.cellIdentity
@@ -133,28 +158,12 @@ class MainActivity : AppCompatActivity() {
                 if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
                     arfcn = cellIdentityGsm.arfcn.toString()
                 }
-                //rac = cellIdentityGsm.rac.toString()
                 strength = cellSignalStrengthGsm.dbm.toString()
                 gsm_rssi = cellSignalStrengthGsm.asuLevel.toString()
                 techno = "GSM"
 
             }
-            if (cellInfo is CellInfoWcdma) {
-                val cellSignalStrengthWcdma: CellSignalStrengthWcdma = cellInfo.cellSignalStrength
-                val cellIdentityWcdma: CellIdentityWcdma = cellInfo.cellIdentity
-                strength = cellSignalStrengthWcdma.dbm.toString()
-                lac = cellIdentityWcdma.lac.toString()
-                cid = cellIdentityWcdma.cid.toString()
-                mcc = cellIdentityWcdma.mccString.toString()
-                mnc = cellIdentityWcdma.mncString.toString()
-                plmn = mcc + mnc
-                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
-                    arfcn = cellIdentityWcdma.uarfcn.toString()
-                }
-                //rac
-                techno = "UMTS"
 
-            }
             if (cellInfo is CellInfoLte) {
                 val cellSignalStrengthLte: CellSignalStrengthLte = cellInfo.cellSignalStrength
                 val cellIdentityLte: CellIdentityLte = cellInfo.cellIdentity
@@ -170,12 +179,17 @@ class MainActivity : AppCompatActivity() {
                 strength = cellSignalStrengthLte.dbm.toString()
 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    cellSignalStrengthLte.rsrp.toString()
+                    lte_rsrq = cellSignalStrengthLte.rsrq.toString()
+                    lte_rsrp = cellSignalStrengthLte.rsrp.toString()
+                    lte_cqi = cellSignalStrengthLte.cqi.toString()
+                    lte_rxlev = cellSignalStrengthLte.level.toString()
                 }
                 techno = "LTE"
 
             }
+
             if (cellInfo is CellInfoCdma) {
+                val cellIdentityWcdma: CellIdentityCdma = cellInfo.cellIdentity
                 val cellSignalStrengthCdma: CellSignalStrengthCdma = cellInfo.cellSignalStrength
                 strength = cellSignalStrengthCdma.dbm.toString()
                 techno = "UMTS"
@@ -187,8 +201,15 @@ class MainActivity : AppCompatActivity() {
             var netInfo: NetworkInfo? = cm.activeNetworkInfo
 
             if (netInfo != null && netInfo.isConnected) {
-                val nc: NetworkCapabilities = cm.getNetworkCapabilities(cm.activeNetwork)
+                val n: NetworkCapabilities = cm.getNetworkCapabilities(cm.activeNetwork)
+                if (n != null){
+                    downSpeed = n.getLinkDownstreamBandwidthKbps()
+                    upSpeed = n.getLinkUpstreamBandwidthKbps()
+                }
             }
+
+            content_latency = Ccontlatency("https://www.aparat.com/")
+            latency = Clatency("8.8.8.8")
 
         }
         catch (e: IndexOutOfBoundsException) {
@@ -198,7 +219,9 @@ class MainActivity : AppCompatActivity() {
             requestNewLocationData()
             if (current_location != null)
             {
-                val info = CellInfo(cid=cid,mcc=mcc,mnc = mnc,plmn=plmn,arfcn = arfcn, latency = 0, content_latency = 0, tac = tac, lac = lac, type = techno, gsm_rssi = gsm_rssi, strength = strength, longitude = current_location!!.longitude, altitude = current_location!!.latitude, time = System.currentTimeMillis())
+                val info = CellInfo(cid=cid,mcc=mcc,mnc = mnc,plmn=plmn,arfcn = arfcn, latency = 0, content_latency = 0, tac = tac, lac = lac, type = techno, gsm_rssi = gsm_rssi, strength = strength, longitude = current_location!!.longitude,
+                    altitude = current_location!!.latitude, time = System.currentTimeMillis(), jitter = jitter, upSpeed = upSpeed, downSpeed = downSpeed, lte_rxlev = lte_rxlev, umts_rscp = umts_rscp,
+                lte_rsrp = lte_rsrp, lte_rsrq = lte_rsrq, lte_cqi = lte_cqi)
                 infoViewModel.insert(info)
             }
         }
@@ -210,6 +233,7 @@ class MainActivity : AppCompatActivity() {
             LocationManager.NETWORK_PROVIDER
         )
     }
+
 
     @SuppressLint("MissingPermission")
     private fun requestNewLocationData() {
@@ -226,6 +250,7 @@ class MainActivity : AppCompatActivity() {
         )
     }
 
+
     private val mLocationCallback = object : LocationCallback() {
         override fun onLocationResult(locationResult: LocationResult) {
             var mLastLocation: Location = locationResult.lastLocation
@@ -239,4 +264,88 @@ class MainActivity : AppCompatActivity() {
     }
 
 
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun Ccontlatency(addresss: String) :Long {
+        val runtime = Runtime.getRuntime()
+        var p : Long =999999999
+
+        try
+        {
+            val IpProcess = runtime.exec("/system/bin/ping -c 1 "+ addresss)
+            val exitVal  = IpProcess.waitFor(2,TimeUnit.SECONDS)
+            var a : Long = (System.currentTimeMillis() %100000)
+            if (exitVal )
+            {
+                var b : Long = (System.currentTimeMillis() %100000)
+                if(b<=a)
+                {
+                    p = (100000 - a) + b
+                }else{
+                    p = b - a
+                }
+            }
+            else
+            {
+                p = 999999999
+            }
+        }
+
+        catch (ignore: InterruptedException)
+        {
+            Log.i("Exception", "stackTrace")
+            ignore.printStackTrace()
+        } catch (e: IOException) {
+            e.printStackTrace()
+        }
+
+        return p
+    }
+
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun Clatency(addresss: String) :Long {
+        val runtime = Runtime.getRuntime()
+        var p : Long =999999999
+
+        try
+        {
+            val IpProcess = runtime.exec("/system/bin/ping -c 1 "+ addresss)
+            val exitVal  = IpProcess.waitFor(2, TimeUnit.SECONDS)
+            var a : Long = (System.currentTimeMillis() %100000)
+
+
+            if (exitVal )
+            {
+                var b : Long = (System.currentTimeMillis() %100000)
+                if(b<=a){ p = (100000 - a) + b }
+                else{ p = b - a }
+            }
+            else
+            {
+                p = 999999999
+            }
+            if (jitter_counter != 0 && p != 999999999.toLong() && latency != 999999999.toLong())
+            {
+                var p2 = p.toInt()
+                var p3 = kotlin.math.abs((p2 - latency).toInt())
+                jitter = (((jitter_counter-1)*jitter)+(p3)) / jitter_counter
+                jitter_counter++
+            }else if (jitter_counter == 0)
+            {
+                jitter_counter++
+            }
+
+        }
+        catch (ignore: InterruptedException)
+        {
+            Log.i("Exception", "stackTrace")
+            ignore.printStackTrace()
+        } catch (e: IOException)
+        {
+            e.printStackTrace()
+        }
+
+        return p
+    }
 }
+
